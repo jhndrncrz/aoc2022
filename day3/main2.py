@@ -18,6 +18,7 @@ def main():
                     break
     common_items = [topriority(i) for i in common_items]
     print(sum(common_items))
+    ## TODO: Day 3, Challenge 2
 
             
 
