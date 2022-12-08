@@ -25,13 +25,13 @@ def swap_drawing(drawing):
     result = [[] for _i in range(len(drawing[0]))]
 
     # Take each row in drawing except first row
-    for i in range(1, len(drawing)): 
+    for i in range(1, len(drawing)):
         # Take each element in row and append it to its corresponding column
         for j in range(len(drawing[0])):
             # Remove blank spaces
-            if drawing[i][j] != ' ':
+            if drawing[i][j] != " ":
                 result[j].append(drawing[i][j])
-    
+
     return result
 
 
@@ -55,7 +55,7 @@ def main():
 
     # Print last characters to get message
     for i in drawing:
-        print(i[-1], end=' ')
+        print(i[-1], end="")
 
 
 if __name__ == "__main__":

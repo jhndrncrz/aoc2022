@@ -25,19 +25,20 @@ def swap_drawing(drawing):
     result = [[] for _i in range(len(drawing[0]))]
 
     # Take each row in drawing except first row
-    for i in range(1, len(drawing)): 
+    for i in range(1, len(drawing)):
         # Take each element in row and append it to its corresponding column
         for j in range(len(drawing[0])):
             # Remove blank spaces
-            if drawing[i][j] != ' ':
+            if drawing[i][j] != " ":
                 result[j].append(drawing[i][j])
-    
+
     return result
 
 
 def mover(matrix, amount, origin, destination):
+    matrix[destination] += matrix[origin][-amount:]
     for _i in range(amount):
-        matrix[destination].append(matrix[origin].pop())
+        matrix[origin].pop()
     return matrix
 
 
@@ -52,10 +53,14 @@ def main():
         for line in file:
             move = parse_moves(line.strip())
             drawing = mover(drawing, move[0], move[1] - 1, move[2] - 1)
+            print(drawing)
 
     # Print last characters to get message
     for i in drawing:
-        print(i[-1], end=' ')
+        if len(i):
+            print(i[-1], end="")
+        else:
+            pass
 
 
 if __name__ == "__main__":

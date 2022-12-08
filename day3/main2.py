@@ -11,10 +11,10 @@ def main():
                         common_items.append(item)
                         break
                 group.clear()
-            
+
     common_items = [topriority(i) for i in common_items]
     print(common_items)
-    print(sum(common_items))         
+    print(sum(common_items))
 
 
 def topriority(item):
@@ -26,4 +26,3 @@ def topriority(item):
 
 if __name__ == "__main__":
     main()
-
