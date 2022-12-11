@@ -2,36 +2,43 @@ def parse_line(line: str) -> list[int]:
     return [int(char) for char in line]
 
 
-def is_visible(grid: list[list[int]], r: int, c: int) -> bool:
+def get_scenic_score(grid: list[list[int]], r: int, c: int) -> int:
     """
-    Checks if tree is visible by comparing it to the edges and the height of the trees with the same column and row
+    Counts how many trees can the tree at r,c see until it gets blocked and multiplies them together
     """
-    if r == 0 or r == len(grid) - 1 or c == 0 or c == len(grid[0]) - 1:
-        return True
 
-    visibility = [True] * 4
+    visibility = [0] * 4
 
     ## Check visibility from top
-    for i in range(0, r):
+    for i in range(r-1, -1, -1):
+        visibility[0] += 1
         if grid[r][c] <= grid[i][c]:
-            visibility[0] = False
+            break
 
-    ## Check visibility from bottom, iterate on rows, fix column
+    ## Check visibility from bottom
     for i in range(r + 1, len(grid)):
+        visibility[1] += 1
         if grid[r][c] <= grid[i][c]:
-            visibility[1] = False
+            break
 
-    ## Check visibility from left, iterate on columns, fix row
-    for i in range(0, c):
+    ## Check visibility from left
+    for i in range(c-1, -1, -1):
+        visibility[2] += 1
         if grid[r][c] <= grid[r][i]:
-            visibility[2] = False
+            break
 
-    ## Check visibility from right, iterate on columns, fix row
+    ## Check visibility from right
     for i in range(c + 1, len(grid[r])):
+        visibility[3] += 1
         if grid[r][c] <= grid[r][i]:
-            visibility[3] = False
+            break
 
-    return any(visibility)
+    score: int = 1
+
+    for s in visibility:
+        score *= s
+    
+    return score
 
 
 def main():
@@ -40,14 +47,16 @@ def main():
         for line in file:
             line = line.strip()
             grid.append(parse_line(line))
-    print(grid)
-    count = 0
+
+    print(get_scenic_score(grid, 1, 2))
+    print(get_scenic_score(grid, 3, 2))
+
+    max_score = 0
     for i in range(len(grid)):
         for j in range(len(grid[i])):
-            if is_visible(grid, i, j):
-                count += 1
-    print(count)
-
+            if get_scenic_score(grid, i, j) > max_score:
+                max_score = get_scenic_score(grid, i, j)
+    print(max_score)
 
 if __name__ == "__main__":
     main()
