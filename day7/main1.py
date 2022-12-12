@@ -15,7 +15,7 @@ def main():
             elif line[0].isalpha():
                 continue
             elif line[0].isnumeric():
-                for i in range(1, len(current_dir)+1):
+                for i in range(1, len(current_dir) + 1):
                     filesystem[tuple(current_dir)[0:i]] += int(line[0])
     totalsize = 0
     for size in filesystem.values():
@@ -23,7 +23,7 @@ def main():
             totalsize += size
 
     print(filesystem)
-    #print(totalsize)
+    # print(totalsize)
 
 
 if __name__ == "__main__":

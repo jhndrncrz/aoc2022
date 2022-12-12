@@ -10,7 +10,7 @@ def get_scenic_score(grid: list[list[int]], r: int, c: int) -> int:
     visibility = [0] * 4
 
     ## Check visibility from top
-    for i in range(r-1, -1, -1):
+    for i in range(r - 1, -1, -1):
         visibility[0] += 1
         if grid[r][c] <= grid[i][c]:
             break
@@ -22,7 +22,7 @@ def get_scenic_score(grid: list[list[int]], r: int, c: int) -> int:
             break
 
     ## Check visibility from left
-    for i in range(c-1, -1, -1):
+    for i in range(c - 1, -1, -1):
         visibility[2] += 1
         if grid[r][c] <= grid[r][i]:
             break
@@ -37,7 +37,7 @@ def get_scenic_score(grid: list[list[int]], r: int, c: int) -> int:
 
     for s in visibility:
         score *= s
-    
+
     return score
 
 
@@ -57,6 +57,7 @@ def main():
             if get_scenic_score(grid, i, j) > max_score:
                 max_score = get_scenic_score(grid, i, j)
     print(max_score)
+
 
 if __name__ == "__main__":
     main()

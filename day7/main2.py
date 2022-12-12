@@ -1,6 +1,7 @@
 def get_size(listx):
     return listx[1]
 
+
 def main():
     current_dir: list[str] = []
     filesystem: dict[tuple[str], int] = {}
@@ -18,22 +19,20 @@ def main():
             elif line[0].isalpha():
                 continue
             elif line[0].isnumeric():
-                for i in range(1, len(current_dir)+1):
+                for i in range(1, len(current_dir) + 1):
                     filesystem[tuple(current_dir)[0:i]] += int(line[0])
     print(f"Space occupied: {filesystem[('/',)]}")
     print(f"Space available: {70000000 - filesystem[('/',)]}")
     print(f"Additional space needed: {30000000 - (70000000 - filesystem[('/',)])}")
     enough = []
     for key, value in filesystem.items():
-        if value >= 30000000 - (70000000 - filesystem[('/',)]):
+        if value >= 30000000 - (70000000 - filesystem[("/",)]):
             enough.append([key, value])
-    
-    
-    enough.sort(key = get_size)
+
+    enough.sort(key=get_size)
     print(enough)
-    
+
     print(filesystem)
-    
 
 
 if __name__ == "__main__":

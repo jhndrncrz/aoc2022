@@ -1,17 +1,13 @@
-def is_touching(hx:int, hy:int, tx:int, ty:int) -> bool:
+def is_touching(hx: int, hy: int, tx: int, ty: int) -> bool:
     return abs(hx - tx) <= 1 and abs(hy - ty) <= 1
+
 
 def main():
     # intialize
     hx, hy = 0, 0
     tx, ty = 0, 0
 
-    head_dir = {
-        'U': (0, 1),
-        'D': (0, -1),
-        'R': (1, 0),
-        'L': (-1, 0)
-    }
+    head_dir = {"U": (0, 1), "D": (0, -1), "R": (1, 0), "L": (-1, 0)}
 
     tail_dests: list[tuple[int, int]] = []
 
@@ -33,14 +29,14 @@ def main():
                     (not is_touching(hx, hy, tx, ty) and hx < tx and hy < ty): (-1, -1),
                 }
                 state = is_touching(hx, hy, tx, ty)
-                dtx, dty = tail_dir.get(True, (0,0))
+                dtx, dty = tail_dir.get(True, (0, 0))
                 tx += dtx
                 ty += dty
                 tail_dests.append((tx, ty))
-                print(f"Head: ({hx}, {hy}) -- Tail: ({tx}, {ty}) ---- (Touching: {state})")
+                print(
+                    f"Head: ({hx}, {hy}) -- Tail: ({tx}, {ty}) ---- (Touching: {state})"
+                )
         print(f"Unique Positions: {len(set(tail_dests))}")
-                
-            
 
 
 if __name__ == "__main__":
