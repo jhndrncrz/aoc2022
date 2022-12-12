@@ -1,7 +1,8 @@
 def is_touching(hx: int, hy: int, tx: int, ty: int) -> bool:
     return abs(hx - tx) <= 1 and abs(hy - ty) <= 1
 
-def motion(lx:int, ly:int, nx:int, ny:int) -> tuple[int, int]:
+
+def motion(lx: int, ly: int, nx: int, ny: int) -> tuple[int, int]:
     n_dir = {
         (lx - nx >= 2 and ly == ny): (1, 0),
         (ly - ny >= 2 and lx == nx): (0, 1),
@@ -45,8 +46,10 @@ def main():
                 rope[0][0] += dhx
                 rope[0][1] += dhy
                 for i in range(len(rope) - 1):
-                    rope[i+1][0], rope[i+1][1] = motion(rope[i][0], rope[i][1], rope[i+1][0], rope[i+1][1])
-                
+                    rope[i + 1][0], rope[i + 1][1] = motion(
+                        rope[i][0], rope[i][1], rope[i + 1][0], rope[i + 1][1]
+                    )
+
                 tail_dests.append((rope[9][0], rope[9][1]))
         print(f"Unique Positions: {len(set(tail_dests))}")
 
