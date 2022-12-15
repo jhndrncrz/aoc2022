@@ -3,7 +3,7 @@ def is_touching(hx: int, hy: int, tx: int, ty: int) -> bool:
 
 
 def main():
-    # intialize
+    # initialize
     hx, hy = 0, 0
     tx, ty = 0, 0
 
